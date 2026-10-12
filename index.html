@@ -2,6 +2,45 @@
 :root{--red:#ee3348;--blue:#2378ef;--dark:#111827}*{box-sizing:border-box}body{margin:0;background:#f4f6fb;color:var(--dark);font-family:Tahoma,Arial,sans-serif}header{background:#101522;color:#fff;padding:15px 5%;display:flex;justify-content:space-between;align-items:center;gap:12px;position:sticky;top:0;z-index:2}header strong{font-size:23px}header strong span{color:var(--red)}button,a{cursor:pointer}button{border:0;border-radius:11px;padding:11px 16px;font-weight:bold}header button,.primary{background:var(--red);color:#fff}.hero{padding:38px 5%;background:linear-gradient(120deg,#151b2b,#143e7d);color:#fff}.hero h1{font-size:clamp(27px,5vw,46px);margin:0 0 12px}.hero p{color:#d9e6ff}.wrap{max-width:1150px;margin:auto;padding:24px 18px}.tools{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:22px}input,select,textarea{padding:13px;border:1px solid #d5d9e3;border-radius:10px;font:inherit;max-width:100%}.tools input{flex:1;min-width:200px}.tools select{min-width:160px}.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:17px}.card{background:#fff;border-radius:17px;overflow:hidden;box-shadow:0 5px 20px #1c315017}.photo{height:160px;background:linear-gradient(135deg,#e9eef8,#fce6e9);display:flex;align-items:center;justify-content:center;font-size:55px}.photo img{width:100%;height:100%;object-fit:cover}.body{padding:15px}.body h3{margin:0 0 8px}.muted{color:#657186;font-size:13px}.price{color:var(--red);font-weight:900;margin:12px 0}.body button{width:100%;background:var(--blue);color:white}#cartPanel{position:fixed;inset:0;background:#0009;z-index:10;display:none;justify-content:flex-start}#cartPanel.open{display:flex}.drawer{width:min(430px,100%);background:white;height:100%;overflow:auto;padding:20px}#cartItems>div{display:flex;align-items:center;justify-content:space-between;gap:8px;border-bottom:1px solid #ddd;padding:12px 0}#cartItems button{padding:6px 10px;background:#e8edfa}form{display:grid;gap:10px;margin-top:15px}form input,form textarea{width:100%}.checkout{background:#1baf70;color:white}#status{padding:8px;color:#ad2332}footer{text-align:center;padding:25px;color:#657186}.empty{text-align:center;padding:35px}.topline{display:flex;justify-content:space-between;align-items:center}.close{background:#eee}.qty{white-space:nowrap}a{color:var(--blue)}
 </style></head><body>
 <header><strong>⚡ شزام <span>ماركت</span></strong><button id="openCart">🛒 السلة (<span id="count">0</span>)</button></header>
+  <!-- شريط إعلانات متحرك -->
+<div class="shezam-news">
+  <div class="shezam-text">
+    🛍️ مرحباً بكم في متجر شزام الإلكتروني ⭐
+    تسوق أفضل المنتجات والعروض المميزة 🔥
+    تسوق بسهولة وأمان مع SHEZAM Market 🛒
+  </div>
+</div>
+
+<style>
+.shezam-news {
+  width: 100%;
+  background: #003366;
+  color: white;
+  overflow: hidden;
+  padding: 12px 0;
+  direction: ltr;
+  box-sizing: border-box;
+}
+
+.shezam-text {
+  display: inline-block;
+  white-space: nowrap;
+  font-size: 20px;
+  font-weight: bold;
+  padding-left: 100%;
+  direction: rtl;
+  animation: shezamMove 12s linear infinite;
+}
+
+@keyframes shezamMove {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-100%);
+  }
+}
+</style>
 <section class="hero"><h1>تسوّق براحة من شزام ماركت 🛍️</h1><p>منتجاتك المفضلة، أسعار واضحة، وطلب مباشر عبر واتساب</p></section>
 <main class="wrap"><div class="tools"><input id="search" placeholder="🔎 ابحث عن منتج..." aria-label="بحث"><select id="category" aria-label="القسم"><option value="">جميع الأقسام</option></select></div><p id="loading">جارٍ تحميل المنتجات...</p><div class="grid" id="products"></div></main>
 <div id="cartPanel" role="dialog" aria-modal="true" aria-label="سلة المشتريات"><section class="drawer"><div class="topline"><h2>🛒 سلة المشتريات</h2><button class="close" id="closeCart">إغلاق ✕</button></div><div id="cartItems"></div><h3>الإجمالي: <span id="total">0</span> ج.س</h3><form id="orderForm"><input id="customer" placeholder="اسم العميل" required maxlength="100"><input id="phone" placeholder="رقم الهاتف" type="tel" required maxlength="30"><textarea id="address" placeholder="عنوان التوصيل بالتفصيل" required maxlength="500"></textarea><button class="checkout" type="submit">إرسال الطلب عبر واتساب 🟢</button></form><p id="status" role="status"></p></section></div>
